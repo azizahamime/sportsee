@@ -1,0 +1,14 @@
+body {
+  background-color: $primary;
+  color: #fff;
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.container {
+  max-width: 1800px;
+  margin: 0 auto;
+}
