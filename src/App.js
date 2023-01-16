@@ -1,16 +1,25 @@
 import './styles/index.scss';
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import Header from "./components/Header/Header";
+import Footer from './components/Footer/Footer';
+import Error from './pages/Error/Error';
+import Profil from './pages/Profil/Profil';
 
-function App() {
+export default function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <p>
-          Hello
-        </p>
+    <Router>
 
-      </header>
-    </div>
+      <Header />
+      <Switch>
+        <Route exact path="/profil">
+          <Profil />
+        </Route>
+        <Route>
+          <Error />
+        </Route>
+      </Switch>
+      <Footer />
+    </Router>
   );
 }
 
-export default App;
