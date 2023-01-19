@@ -4,6 +4,7 @@ import Header from "./components/Header/Header";
 import Footer from './components/Footer/Footer';
 import Error from './pages/Error/Error';
 import Profil from './pages/Profil/User';
+import './server';
 
 export default function App() {
   return (

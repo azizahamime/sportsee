@@ -6,7 +6,6 @@ import Connection from "../connection";
 export default function Header() {
   const { data, isLoading} = Connection();
   const users = data.users;
-  console.log(users );
   return (
     <header>
       <div className="container">
