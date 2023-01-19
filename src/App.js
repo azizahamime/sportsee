@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Header from "./components/Header/Header";
 import Footer from './components/Footer/Footer';
 import Error from './pages/Error/Error';
-import Profil from './pages/Profil/Profil';
+import Profil from './pages/Profil/User';
 
 export default function App() {
   return (
@@ -11,7 +11,7 @@ export default function App() {
 
       <Header />
       <Switch>
-        <Route exact path="/profil">
+        <Route exact path="/user/:id">
           <Profil />
         </Route>
         <Route>

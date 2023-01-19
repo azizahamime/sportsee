@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-const url = '/api/users';
-export default function Connection() {
+const urlUsers = '/api/users';
+export default function Connection(url = urlUsers) {
   const [data, setData] = useState({});
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(false);
@@ -18,7 +18,7 @@ export default function Connection() {
       })
       .finally(() => setIsLoading(false))
 
-  }, [])
+  }, [url])
 
   return { error, isLoading, data }
 
