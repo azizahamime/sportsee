@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Header from "./components/Header/Header";
 import Footer from './components/Footer/Footer';
 import Error from './pages/Error/Error';
-import Profil from './pages/Profil/User';
+import Profil from './pages/Profil/Profil';
 import './server';
 
 export default function App() {

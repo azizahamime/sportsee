@@ -1,47 +1,50 @@
-import { createServer } from "miragejs";
+import { createServer } from 'miragejs'
+import data from './Data'
 
-createServer({
-  routes() {
-    this.namespace = "api";
-    this.get('/users', () => {
-      return {
-        users: [
-          {
-            id: 20,
-            userInfos: {
-              firstName: 'azi',
-              lastName: 'coucou',
-              age: 17,
-            },
-            todayScore: 0.12,
-            keyData: {
-              calorieCount: 1930,
-              proteinCount: 155,
-              carbohydrateCount: 290,
-              lipidCount: 50
+const routes = [
+  { name: '', data: data.USER_MAIN_DATA, findBy: 'id', timing: 1000 },
+  {
+    name: '/activity',
+    data: data.USER_ACTIVITY,
+    findBy: 'userId'
+  },
+  {
+    name: '/average-sessions',
+    data: data.USER_AVERAGE_SESSIONS,
+    findBy: 'userId'
+  },
+  {
+    name: '/performance',
+    data: data.USER_PERFORMANCE,
+    findBy: 'userId'
+  },
+]
+
+/**
+ * Create a server to mock an api using miragejs libray
+ * @memberof mockedApi
+ * @see {@link https://miragejs.com/}
+ * @method
+ */
+const create = () =>
+  createServer({
+    routes() {
+      this.urlPrefix = 'http://localhost:3001'
+      this.namespace = 'user'
+
+      routes.forEach(
+        (route) =>
+          this.get(
+            `/:id${route.name}`,
+            (schema, request) => {
+              const id = parseInt(request.params.id)
+              return {
+                data: route.data.find((user) => user[route.findBy] === id),
+              }
             }
-          },
-          {
-            id: 32,
-            userInfos: {
-              firstName: 'vvvv',
-              lastName: 'nom2',
-              age: 20,
-            },
-            todayScore: 0.12,
-            keyData: {
-              calorieCount: 1930,
-              proteinCount: 155,
-              carbohydrateCount: 290,
-              lipidCount: 50
-            }
-          }
-        ]
-      }
-    })
+          )
+      )
+    },
+  })
 
-
-
-  }
-
-});
+export default create

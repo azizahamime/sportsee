@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-const urlUsers = '/api/users';
+const urlUsers = 'http://localhost:3001/user/12';
+
 export default function Connection(url = urlUsers) {
   const [data, setData] = useState({});
   const [isLoading, setIsLoading] = useState(true);
