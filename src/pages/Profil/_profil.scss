@@ -1,3 +1,50 @@
 main {
-  margin: 20px 20px 20px 230px;
+  margin: 68px 20px 20px 230px;
+  .profil-header {
+    h1 {
+      font-family: "Roboto";
+      font-style: normal;
+      font-weight: 500;
+      font-size: 48px;
+      line-height: 24px;
+      margin-bottom: 40px;
+    }
+    .name {
+      color: $primary;
+    }
+  }
+  .profile-body {
+    display: flex;
+    margin: 80px 0;
+    .charts {
+      width: 75%;
+    }
+    .nutrition {
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+      width: 25%;
+      & > div {
+        background-color: #fbfbfb !important;
+        box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.0212249);
+        padding: 30px;
+        display: flex;
+        gap: 40px;
+        align-items: center;
+        border-radius: 5px;
+        .amount {
+          font-weight: 700;
+          font-size: 20px;
+          line-height: 24px;
+          color: #282d30;
+        }
+        .name {
+          font-weight: 500;
+          font-size: 14px;
+          line-height: 24px;
+          color: #74798c;
+        }
+      }
+    }
+  }
 }
