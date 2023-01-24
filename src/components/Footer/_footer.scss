@@ -3,15 +3,14 @@ footer {
   background-color: #000;
   color: #fff;
   width: 150px;
-  height: 100vh;
-  position: fixed;
+  position: absolute;
+  height: 100%;
   top: 90px;
   left: 0;
   .container {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    height: 90%;
     padding: 20px 0;
     .nav-footer {
       display: flex;
