@@ -6,6 +6,7 @@ import calories from "../../assets/calories-icon.svg";
 import proteines from "../../assets/protein-icon.svg";
 import carbs from "../../assets/carbs-icon.svg";
 import fat from "../../assets/fat-icon.svg";
+import Activity from "../../components/Activity/Activity";
 
 
 
@@ -13,9 +14,13 @@ import fat from "../../assets/fat-icon.svg";
 export default function Profil() {
 	const { id } = useParams();
 	const { data, error, isLoading} = Connection(`${properties.api.baseUrl}/${id}`);
+	const user = Connection(`${properties.api.baseUrl}/${id}`);
+	
 
 	console.log (id);
-	console.log(data.data);
+	console.log(user.data);
+	
+
 	if (error) return <div> oups il y a un probléme !!</div>;
   
 	return (
@@ -32,7 +37,13 @@ export default function Profil() {
 						<div className="profile-body">
 							
 							<div className="charts">
-								<div className="activity"></div>
+								<div className="activity">
+									
+									
+									<Activity ide = {id}/>
+									
+
+								</div>
 								<div className="mini-charts">
 									<div className="sessions"></div>
 									<div className="performance"></div>
