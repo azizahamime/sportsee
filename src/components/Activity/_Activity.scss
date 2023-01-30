@@ -1,0 +1,19 @@
+.recharts-legend-item-text {
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 24px;
+  color: #74798c !important;
+  padding: 0 10px;
+}
+.tooltip {
+  background-color: $primary;
+  margin: 10px;
+  position: relative;
+  top: -20px;
+  color: #ffffff;
+  padding: 5px 11px;
+  text-align: center;
+  &_item {
+    padding: 10px 0;
+  }
+}

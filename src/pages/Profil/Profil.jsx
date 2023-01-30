@@ -6,7 +6,8 @@ import calories from "../../assets/calories-icon.svg";
 import proteines from "../../assets/protein-icon.svg";
 import carbs from "../../assets/carbs-icon.svg";
 import fat from "../../assets/fat-icon.svg";
-import { BarChart, CartesianGrid, XAxis, YAxis, Tooltip, Legend, Bar, Line, LineChart, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, Radar, RadialBarChart, RadialBar  } from "recharts";
+//import { BarChart, CartesianGrid, XAxis, YAxis, Tooltip, Legend, Bar, Line, LineChart, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, Radar, RadialBarChart, RadialBar  } from "recharts";
+import Activity from "../../components/Activity/Activity";
 
 
 
@@ -14,9 +15,9 @@ export default function Profil() {
 	const { id } = useParams();
 	const { data, error, isLoading} = Connection(`${properties.api.baseUrl}/${id}`);
 	const user = Connection(`${properties.api.baseUrl}/${id}`);
-	const userActivity = Connection(`${properties.api.baseUrl}/${id}/activity`);
-	const userSession = Connection(`${properties.api.baseUrl}/${id}/average-sessions`);
-	const userPerformance = Connection(`${properties.api.baseUrl}/${id}/performance`);
+	//const userActivity = Connection(`${properties.api.baseUrl}/${id}/activity`);
+	//const userSession = Connection(`${properties.api.baseUrl}/${id}/average-sessions`);
+	//const userPerformance = Connection(`${properties.api.baseUrl}/${id}/performance`);
 
 	
 
@@ -41,16 +42,8 @@ export default function Profil() {
 							<div className="charts">
 								<div className="activity">
 									
+									<Activity userId={id} error={error} isLoading ={isLoading} />
 									
-									<BarChart width={730} height={250} data={userActivity.data.data.sessions}>
-										<CartesianGrid strokeDasharray="2 3" />
-										<XAxis dataKey="day" />
-										<YAxis />
-										<Tooltip />
-										<Legend />
-										<Bar dataKey="kilogram" fill="#282D30" />
-										<Bar dataKey="calories" fill="#E60000" />
-									</BarChart>
 									
 
 								</div>
@@ -58,7 +51,7 @@ export default function Profil() {
 									<div className="sessions">
 
 										
-										<LineChart
+										{/*	<LineChart
 											width={500}
 											height={300}
 											data={userSession.data.data.sessions}
@@ -76,23 +69,23 @@ export default function Profil() {
 											<Legend verticalAlign="top" />
 											<Line type="monotone" dataKey="sessionLength" stroke="#8884d8" activeDot={{ r: 8 }} />
 												
-										</LineChart>
+										</LineChart>*/}
 										
 
 									</div>
 									<div className="performance">
 
-										<RadarChart cx="50%" cy="50%" outerRadius="80%" data={userPerformance.data.data}>
+										{/*<RadarChart cx="50%" cy="50%" outerRadius="80%" data={userPerformance.data.data}>
 											<PolarGrid />
 											<PolarAngleAxis dataKey="kind" />
 											<PolarRadiusAxis />
 											<Radar name="Mike" dataKey="value" stroke="#8884d8" fill="#8884d8" fillOpacity={0.6} />
-										</RadarChart>
+									</RadarChart>*/}
 
 									</div>
 									<div className="score">
 
-										<RadialBarChart cx="50%" cy="50%" innerRadius="10%" outerRadius="80%" barSize={10} data={data.data}>
+										{/*<RadialBarChart cx="50%" cy="50%" innerRadius="10%" outerRadius="80%" barSize={10} data={data.data}>
 											<RadialBar
 												minAngle={15}
 												label={{ position: "insideStart", fill: "#000" }}
@@ -101,7 +94,7 @@ export default function Profil() {
 												dataKey="todayScore"
 											/>
 											<Legend iconSize={10} layout="vertical" verticalAlign="middle"  />
-										</RadialBarChart>
+								</RadialBarChart>*/}
 									</div>
 								</div>
 							</div>

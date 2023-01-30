@@ -239,7 +239,7 @@ const USER_PERFORMANCE = [
 		],
 	},
 	{
-		userId: 18,
+		userId: 20,
 		kind: {
 			1: "cardio",
 			2: "energy",
