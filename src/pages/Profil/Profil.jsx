@@ -7,7 +7,8 @@ import proteines from "../../assets/protein-icon.svg";
 import carbs from "../../assets/carbs-icon.svg";
 import fat from "../../assets/fat-icon.svg";
 //import { BarChart, CartesianGrid, XAxis, YAxis, Tooltip, Legend, Bar, Line, LineChart, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, Radar, RadialBarChart, RadialBar  } from "recharts";
-import Activity from "../../components/Activity/Activity";
+import Activity from "../../components/Charts/Activity/Activity";
+import Session from "../../components/Charts/Session/Session";
 
 
 
@@ -49,7 +50,7 @@ export default function Profil() {
 								</div>
 								<div className="mini-charts">
 									<div className="sessions">
-
+										<Session  userId={id} error={error} isLoading ={isLoading} />
 										
 										{/*	<LineChart
 											width={500}

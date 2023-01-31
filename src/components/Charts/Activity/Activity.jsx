@@ -1,7 +1,7 @@
 import React from "react";
 import { BarChart, CartesianGrid, XAxis, YAxis, Tooltip,Legend, Bar } from "recharts";
-import properties from "../../properties";
-import Connection from "../connection";
+import properties from "../../../properties";
+import Connection from "../../connection";
 
 const CustomTooltip = ({ active, payload }) => {
 	if (active && payload && payload.length) {
@@ -56,12 +56,13 @@ export default function Activity({userId, error}) {
 				fontSize={14}
 				tickMargin={15}
 				tickLine={false}
-				padding={{ right: -37, left: -34 }}
+				padding={{ right: -40, left: -34 }}
 			/>
 			<YAxis
 				orientation="right" 
 				axisLine={false} 
-				tickLine={false} 
+				tickLine={false}
+				padding={{ left: 40 }}
 			/>
 			<Tooltip  content={<CustomTooltip />} wrapperStyle={{ outline: "none" }}/>
 			<Legend 
@@ -85,12 +86,7 @@ export default function Activity({userId, error}) {
 				barSize={7} 
 				radius={[3,3,0,0]} 
 			/>
-		</BarChart>
-
-		
-		
-		
-							
+		</BarChart>				
 	);
 
 	return activity;
