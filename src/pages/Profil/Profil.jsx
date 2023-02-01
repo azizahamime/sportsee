@@ -9,7 +9,7 @@ import fat from "../../assets/fat-icon.svg";
 //import { BarChart, CartesianGrid, XAxis, YAxis, Tooltip, Legend, Bar, Line, LineChart, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, Radar, RadialBarChart, RadialBar  } from "recharts";
 import Activity from "../../components/Charts/Activity/Activity";
 import Session from "../../components/Charts/Session/Session";
-
+import Performances from "../../components/Charts/Performances/performances";
 
 
 export default function Profil() {
@@ -75,7 +75,7 @@ export default function Profil() {
 
 									</div>
 									<div className="performance">
-
+										<Performances  userId={id} error={error} isLoading ={isLoading} />
 										{/*<RadarChart cx="50%" cy="50%" outerRadius="80%" data={userPerformance.data.data}>
 											<PolarGrid />
 											<PolarAngleAxis dataKey="kind" />

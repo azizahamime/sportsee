@@ -18,19 +18,29 @@ main {
     margin: 80px 0;
     .charts {
       width: 75%;
-    }
-    .activity {
-      background-color: #fbfbfb;
-      padding: 30px 20px;
-      margin-right: 40px;
-    }
-    .sessions {
-      background-color: $primary;
-      padding: 30px 0;
-      p {
-        margin: 50px 50px;
+      .activity {
+        background-color: #fbfbfb;
+        padding: 30px 20px;
+        margin-right: 40px;
+      }
+      .mini-charts {
+        display: flex;
+        gap: 30px;
+        margin-top: 30px;
+        .sessions {
+          background-color: $primary;
+          padding: 30px 0;
+          p {
+            margin: 50px 50px;
+          }
+        }
+        .performance {
+          background-color: #282d30;
+          box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.0212249);
+        }
       }
     }
+
     .nutrition {
       display: flex;
       flex-direction: column;
