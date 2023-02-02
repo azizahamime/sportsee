@@ -17,7 +17,7 @@ function Sessions({userId, error}) {
 
 			<LineChart
 				width={250}
-				height={350}
+				height={100}
 				data={userSession.data.data.sessions}
 				margin={{
 					right: 5,

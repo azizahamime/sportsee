@@ -10,6 +10,7 @@ import fat from "../../assets/fat-icon.svg";
 import Activity from "../../components/Charts/Activity/Activity";
 import Session from "../../components/Charts/Session/Session";
 import Performances from "../../components/Charts/Performances/performances";
+import Score from "../../components/Charts/Score/Score";
 
 
 export default function Profil() {
@@ -85,6 +86,7 @@ export default function Profil() {
 
 									</div>
 									<div className="score">
+										<Score userId={id} />
 
 										{/*<RadialBarChart cx="50%" cy="50%" innerRadius="10%" outerRadius="80%" barSize={10} data={data.data}>
 											<RadialBar
