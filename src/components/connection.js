@@ -1,7 +1,7 @@
-import { useEffect, useState } from "react";
-import axios from "axios";
+import { useEffect, useState } from 'react';
+import axios from 'axios';
 
-const urlUsers = "http://localhost:3001/user/12";
+const urlUsers = 'http://localhost:3001/user/12';
 
 export default function Connection(url = urlUsers) {
 	const [data, setData] = useState({});

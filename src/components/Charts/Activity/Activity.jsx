@@ -1,7 +1,6 @@
-import React from "react";
-import { BarChart, CartesianGrid, XAxis, YAxis, Tooltip,Legend, Bar } from "recharts";
-import properties from "../../../properties";
-import Connection from "../../connection";
+import React from 'react';
+import { BarChart, CartesianGrid, XAxis, YAxis, Tooltip,Legend, Bar } from 'recharts';
+
 
 const CustomTooltip = ({ active, payload }) => {
 	if (active && payload && payload.length) {
@@ -16,20 +15,8 @@ const CustomTooltip = ({ active, payload }) => {
 	return null;
 };
 
-export default function Activity({userId, error}) {
-	
-	const userActivity = Connection(`${properties.api.baseUrl}/${userId}/activity`);
-	if (error) return <span>oups!!</span>;
-	//if (userActivity.isLoading){console.log(userActivity.data.data.sessions);}
-	//(isLoading) ? console.log("true")  : console.log("false");
-	//(userActivity.isLoading) ? console.log("true")  : console.log("false");
-	//console.log(userActivity.data.data.sessions, userId);
-
-	
-	const activity = userActivity.isLoading ? (
-		<div> chargement </div>
-	):(
-		
+export default function Activity({data}) {
+	return(
 		<BarChart 
 			width={750} 
 			height={250} 
@@ -37,7 +24,7 @@ export default function Activity({userId, error}) {
 			barGap="8"
 			barCategoryGap="20%" 
 			margin={{ top: 0, right: 30, left: 20, bottom: 5 }}
-			data={userActivity.data.data.sessions}
+			data={data}
 		>
 			<text
 				x={100}
@@ -64,7 +51,7 @@ export default function Activity({userId, error}) {
 				tickLine={false}
 				padding={{ left: 40 }}
 			/>
-			<Tooltip  content={<CustomTooltip />} wrapperStyle={{ outline: "none" }}/>
+			<Tooltip  content={<CustomTooltip />} wrapperStyle={{ outline: 'none' }}/>
 			<Legend 
 				verticalAlign="top"
 				align="right"
@@ -89,6 +76,6 @@ export default function Activity({userId, error}) {
 		</BarChart>				
 	);
 
-	return activity;
+	
 	
 }

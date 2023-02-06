@@ -1,10 +1,10 @@
 {
     "env": {
         "browser": true,
-        "commonjs": true,
         "es2021": true
     },
     "extends": [
+        "react-app",
         "eslint:recommended",
         "plugin:react/recommended"
     ],
@@ -15,9 +15,11 @@
         "sourceType": "module"
     },
     "plugins": [
-        "react"
+        "jsx-a11y"
     ],
     "rules": {
+        "react/prop-types": "off",
+
         "indent": [
             "error",
             "tab"
@@ -28,14 +30,11 @@
         ],
         "quotes": [
             "error",
-            "double"
+            "single"
         ],
         "semi": [
             "error",
             "always"
-        ],
-        
-        "react/prop-types": 0
-        
+        ]
     }
 }

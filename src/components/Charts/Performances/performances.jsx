@@ -1,14 +1,12 @@
-import React from "react";
+import React from 'react';
 import {
 	Radar,
 	RadarChart,
 	PolarGrid,
-	PolarAngleAxis,
-	
-	
-} from "recharts";
-import Connection from "../../connection";
-import properties from "../../../properties";
+	PolarAngleAxis,	
+} from 'recharts';
+import Connection from '../../connection';
+import properties from '../../../properties';
 
 export default function Performances({userId, error}){
 	const userPerformance = Connection(`${properties.api.baseUrl}/${userId}/performance`);

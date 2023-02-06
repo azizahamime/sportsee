@@ -1,22 +1,22 @@
-import { createServer } from "miragejs";
-import data from "./Data";
+import { createServer } from 'miragejs';
+import data from './Data';
 
 const routes = [
-	{ name: "", data: data.USER_MAIN_DATA, findBy: "id", timing: 1000 },
+	{ name: '', data: data.USER_MAIN_DATA, findBy: 'id', timing: 1000 },
 	{
-		name: "/activity",
+		name: '/activity',
 		data: data.USER_ACTIVITY,
-		findBy: "userId"
+		findBy: 'userId'
 	},
 	{
-		name: "/average-sessions",
+		name: '/average-sessions',
 		data: data.USER_AVERAGE_SESSIONS,
-		findBy: "userId"
+		findBy: 'userId'
 	},
 	{
-		name: "/performance",
+		name: '/performance',
 		data: data.USER_PERFORMANCE,
-		findBy: "userId"
+		findBy: 'userId'
 	},
 ];
 
@@ -29,8 +29,8 @@ const routes = [
 const create = () =>
 	createServer({
 		routes() {
-			this.urlPrefix = "http://localhost:3001";
-			this.namespace = "user";
+			this.urlPrefix = 'http://localhost:3001';
+			this.namespace = 'user';
 
 			routes.forEach(
 				(route) =>

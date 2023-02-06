@@ -1,7 +1,7 @@
-import React, { Fragment } from "react";
-import properties from "../../../properties";
-import Connection from "../../connection";
-import {LineChart, XAxis, YAxis, Tooltip, Line } from "recharts";
+import React, { Fragment } from 'react';
+import properties from '../../../properties';
+import Connection from '../../connection';
+import {LineChart, XAxis, YAxis, Tooltip, Line } from 'recharts';
 
 function Sessions({userId, error}) {
 	const userSession = Connection(`${properties.api.baseUrl}/${userId}/average-sessions`);
@@ -25,7 +25,7 @@ function Sessions({userId, error}) {
 				}}
 			>
 				<XAxis dataKey="day" tickLine={false} axisLine={false}/>
-				<YAxis tickLine={false} hide domain={["dataMin - 50", "dataMax + 50"]}/>
+				<YAxis tickLine={false} hide domain={['dataMin - 50', 'dataMax + 50']}/>
 				<Tooltip />
 				<Line type="monotone" dataKey="sessionLength" stroke="#8884d8" activeDot={{ r: 8 }} />
 			</LineChart>

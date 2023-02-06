@@ -1,32 +1,36 @@
-import React, { Fragment } from "react";
-import {  useParams } from "react-router-dom";
-import Connection from "../../components/connection";
-import properties from "../../properties";
-import calories from "../../assets/calories-icon.svg";
-import proteines from "../../assets/protein-icon.svg";
-import carbs from "../../assets/carbs-icon.svg";
-import fat from "../../assets/fat-icon.svg";
-//import { BarChart, CartesianGrid, XAxis, YAxis, Tooltip, Legend, Bar, Line, LineChart, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, Radar, RadialBarChart, RadialBar  } from "recharts";
-import Activity from "../../components/Charts/Activity/Activity";
-import Session from "../../components/Charts/Session/Session";
-import Performances from "../../components/Charts/Performances/performances";
-import Score from "../../components/Charts/Score/Score";
+import React, { Fragment } from 'react';
+import {  useParams } from 'react-router-dom';
+import Connection from '../../components/connection';
+import properties from '../../properties';
+import calories from '../../assets/calories-icon.svg';
+import proteines from '../../assets/protein-icon.svg';
+import carbs from '../../assets/carbs-icon.svg';
+import fat from '../../assets/fat-icon.svg';
+import Activity from '../../components/Charts/Activity/Activity';
+import Session from '../../components/Charts/Session/Session';
+import Performances from '../../components/Charts/Performances/performances';
+import Score from '../../components/Charts/Score/Score';
 
 
 export default function Profil() {
 	const { id } = useParams();
 	const { data, error, isLoading} = Connection(`${properties.api.baseUrl}/${id}`);
 	const user = Connection(`${properties.api.baseUrl}/${id}`);
-	//const userActivity = Connection(`${properties.api.baseUrl}/${id}/activity`);
-	//const userSession = Connection(`${properties.api.baseUrl}/${id}/average-sessions`);
-	//const userPerformance = Connection(`${properties.api.baseUrl}/${id}/performance`);
+	const userActivity = Connection(`${properties.api.baseUrl}/${id}/activity`);
+	const userSession = Connection(`${properties.api.baseUrl}/${id}/average-sessions`);
+	const userPerformance = Connection(`${properties.api.baseUrl}/${id}/performance`);
 
 	
 
 	console.log(data.data);
 	
 
-	if (error) return <div> oups il y a un probléme !!</div>;
+	if (user.error) return <div> oups il y a un probléme !!</div>;
+	if (userActivity.error) return <div> oups il y a un probléme !!</div>;
+	if (userSession.error) return <div> oups il y a un probléme !!</div>;
+	if (userPerformance.error) return <div> oups il y a un probléme !!</div>;
+
+
   
 	return (
 		<main>
@@ -43,8 +47,13 @@ export default function Profil() {
 							
 							<div className="charts">
 								<div className="activity">
+									{userActivity.isLoading ?(
+										<div> Télechargement </div>
+									):(
+										<Activity data={userActivity.data.data.sessions} />
+									)}
 									
-									<Activity userId={id} error={error} isLoading ={isLoading} />
+									
 									
 									
 
