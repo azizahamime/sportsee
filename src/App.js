@@ -2,10 +2,10 @@ import React from 'react';
 import './styles/index.scss';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Header from './components/Header/Header';
-import Footer from './components/Footer/Footer';
 import Error from './pages/Error/Error';
 import Profil from './pages/Profil/Profil';
 import './server';
+import SideBar from './components/SideBar/SideBar';
 
 export default function App() {
 	return (
@@ -19,7 +19,7 @@ export default function App() {
 					<Error />
 				</Route>
 			</Switch>
-			<Footer />
+			<SideBar />
 		</Router>
 	);
 }

@@ -1,5 +1,5 @@
 main {
-  margin: 68px 20px 20px 230px;
+  margin: 68px 20px 20px 180px;
   .profil-header {
     h1 {
       font-family: "Roboto";
@@ -15,9 +15,14 @@ main {
   }
   .profile-body {
     display: flex;
+    flex-wrap: wrap;
     margin: 80px 0;
     .charts {
       width: 75%;
+      @media (max-width: 1500px) {
+        width: 100%;
+        order: 2;
+      }
       .activity {
         background-color: #fbfbfb;
         padding: 30px 20px;
@@ -49,8 +54,16 @@ main {
     .nutrition {
       display: flex;
       flex-direction: column;
+      flex-wrap: wrap;
       gap: 30px;
       width: 25%;
+
+      @media (max-width: 1500px) {
+        flex-direction: row;
+        width: 100%;
+        order: 1;
+        margin-bottom: 30px;
+      }
       & > div {
         background-color: #fbfbfb !important;
         box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.0212249);

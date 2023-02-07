@@ -11,6 +11,14 @@ import properties from '../../../properties';
 export default function Performances({userId, error}){
 	const userPerformance = Connection(`${properties.api.baseUrl}/${userId}/performance`);
 	if (error) return <span>oups!!</span>;
+	const diffkind = {
+		1: 'cardio',
+		2: 'energy',
+		3: 'endurance',
+		4: 'strength',
+		5: 'speed',
+		6: 'intensity',
+	};
 	const performance = userPerformance.isLoading ? (
 		<div> chargement </div>
 	):(
@@ -27,7 +35,7 @@ export default function Performances({userId, error}){
 		>
 			<PolarGrid radialLines={false} />
 			<PolarAngleAxis
-				dataKey="kind"
+				dataKey={diffkind['kind']}
 				stroke="#FFF"
 				tickLine={false}
 				tickSize="17"

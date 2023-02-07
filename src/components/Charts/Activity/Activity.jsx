@@ -16,6 +16,7 @@ const CustomTooltip = ({ active, payload }) => {
 };
 
 export default function Activity({data}) {
+	console.log(data);
 	return(
 		<BarChart 
 			width={750} 
@@ -23,7 +24,7 @@ export default function Activity({data}) {
 			barSize={3} 
 			barGap="8"
 			barCategoryGap="20%" 
-			margin={{ top: 0, right: 30, left: 20, bottom: 5 }}
+			margin={{ top: 0, right: 30, left: 35, bottom: 5 }}
 			data={data}
 		>
 			<text
@@ -39,11 +40,14 @@ export default function Activity({data}) {
 			</text>
 			<CartesianGrid strokeDasharray="3" vertical={false} />
 			<XAxis 
-				dataKey="day" 
+				dataKey="day[9]" 
+				//type='number'
 				fontSize={14}
 				tickMargin={15}
 				tickLine={false}
 				padding={{ right: -40, left: -34 }}
+				minTickGap={30}
+
 			/>
 			<YAxis
 				orientation="right" 

@@ -1,0 +1,35 @@
+aside {
+  position: absolute;
+  top: 91px;
+  bottom: 0;
+  left: 0;
+  box-sizing: border-box;
+  width: 117px;
+  height: 100%;
+  padding: 80px 0;
+  background-color: black;
+
+  .nav-footer {
+    display: flex;
+    flex-direction: column;
+
+    img {
+      margin: 0 auto 20px;
+      width: 64px;
+      height: 64px;
+      background-color: #fff;
+      padding: 10px;
+      border-radius: 6px;
+    }
+  }
+  p {
+    position: absolute;
+    bottom: calc(45px + 59px);
+    left: -14px;
+    white-space: nowrap;
+    font-weight: 500;
+    font-size: 12px;
+    color: white;
+    transform: rotate(-90deg);
+  }
+}
