@@ -3,52 +3,54 @@ import {
 	Radar,
 	RadarChart,
 	PolarGrid,
-	PolarAngleAxis,	
+	PolarAngleAxis,
+	PolarRadiusAxis	
 } from 'recharts';
-import Connection from '../../connection';
-import properties from '../../../properties';
 
-export default function Performances({userId, error}){
-	const userPerformance = Connection(`${properties.api.baseUrl}/${userId}/performance`);
-	if (error) return <span>oups!!</span>;
-	const diffkind = {
-		1: 'cardio',
-		2: 'energy',
-		3: 'endurance',
-		4: 'strength',
-		5: 'speed',
-		6: 'intensity',
-	};
-	const performance = userPerformance.isLoading ? (
-		<div> chargement </div>
-	):(
+
+export default function Performances({data}){
+	
+	function perFormence(kind) {
+		switch (kind) {
+		case 1:
+			return 'cardio';
+		case 2:
+			return 'energy';
+		case 3:
+			return 'endurance';
+		case 4:
+			return 'strength';
+		case 5:
+			return 'speed';
+		case 6:
+			return 'intensity';
+		default:
+			return null;
+		}
+	}
+	return(
 		
 		<RadarChart
 			cx="50%"
 			cy="50%"
 			outerRadius="70%"
-			data={userPerformance.data.data.data}
-			width={258}
+			data={data}
+			width={300}
 			height={263}
 			//margin={{ top: 10, right: 10, bottom: 10, left: 10 }}
 			
 		>
 			<PolarGrid radialLines={false} />
 			<PolarAngleAxis
-				dataKey={diffkind['kind']}
+				dataKey="kind"
+				tickFormatter={perFormence}
 				stroke="#FFF"
 				tickLine={false}
-				tickSize="17"
-				
-				dy={5}
-				
+				tick={{ fill: '#FFFFFF', fontSize: 12 ,zIndex:'10' }}
+				dy={5}	
 			/>
-
-			<Radar dataKey="value" fill="#FF0101" stroke="#FF0101B2" fillOpacity={0.7} />
+			<PolarRadiusAxis tick={false} tickCount={6} axisLine={false} />
+			<Radar dataKey="value" fill="#FF0101"  fillOpacity={0.7} />
 		</RadarChart>
 	);
-	return performance;
-		
-	
-
 }

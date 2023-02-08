@@ -1,71 +1,66 @@
 import React from 'react';
 
-import { PieChart, Pie} from 'recharts';
-import properties from '../../../properties';
-import Connection from '../../connection';
+import { 
+	RadialBarChart,
+	PolarAngleAxis,
+	RadialBar,
+	Legend,
+	ResponsiveContainer
+} from 'recharts';
 
-//const renderMiddleShape = [{ name: "middle", value: 100, fill: "#FFFFFF" }];
-export default function Score({userId}) {
-	const user = Connection(`${properties.api.baseUrl}/${userId}`);
 
-	if (user.error) { return (<p>oups!!</p>);}
-	function CustomTooltip({ cx, cy, payload }) {
-		let score = payload.payload.score;
-		return (
-			<g>
-				<text x={cx - 20} y={cy - 20} fill="black" dominantBaseline="central">
-					{score * 100}%
-				</text>
-				<text x={cx - 60} y={cy + 10} fill="black" dominantBaseline="central">
-					de votre objectif
-				</text>
-			</g>
-
-		);
-	}
-	const score = user.isLoading ? (
-		<div> chargement </div>
-	):(
-		<PieChart width={258} height={320}>
-			<text
-				x={45}
-				y={35}
-				fill="#20253A"
-				textAnchor="middle"
-				dominantBaseline="central"
-			>	
-				Score
-			</text>
-			<Pie
-				data={[{ score:user.data.data.score || user}]}
-				dataKey="score"
-				fill="#ff0000"
-				startAngle={90}
-				innerRadius={80}
-				outerRadius={90}
-				cx="50%" cy="50%" 
-				cornerRadius={50}
-				label
-				
-			/>
-			<Pie
-				data={[{ score:user.data.data.score }]}
-				dataKey={'score' }
+export default function Score({data}) {
+	console.log(data[0]);
+	const RenderLegend = () => (
+		<div className="score-container">
+			<span className="score">{data[0].Score * 100}%</span>
+			<p className="description">de votre </p>
+			<p className="description"> objectif</p>
+		</div>
+	);
+	
+	return (
+		<ResponsiveContainer width="100%" height="100%">
+			
+			<RadialBarChart
 				cx="50%"
 				cy="50%"
-				outerRadius={80}
-				stroke="none"
-				fill="#ffffff"
-				name="middle"
-				label={CustomTooltip}
-				
-			/>
-				
-			
-			
-
-		</PieChart>
+				style={{ backgroundColor: '#FBFBFB', borderRadius: '5px' }}
+				innerRadius="70%"
+				outerRadius="90%"
+				barSize={10}
+				data={data}
+				startAngle={90}
+				endAngle={450}
+			>
+				<text
+					x={30}
+					y={20}
+					fill="black"
+					textAnchor="middle"
+					dominantBaseline="left"
+				>
+					<tspan fontSize="18px" fontWeight="500" >
+          Score
+					</tspan>
+				</text>
+				<circle cx="50%" cy="50%" fill="#fff" r="85"></circle>
+				<PolarAngleAxis type="number" domain={[0, 1]} tick={false} />
+				<RadialBar
+					minAngle={15}
+					dataKey="score"
+					fill="red"
+					cornerRadius={20}
+				/>
+				<Legend
+					width={120}
+					height={120}
+					layout="vertical"
+					verticalAlign="middle"
+					align="center"
+					content={<RenderLegend />}
+				/>
+			</RadialBarChart>
+		</ResponsiveContainer>
 	);
-	return score;
-
 }

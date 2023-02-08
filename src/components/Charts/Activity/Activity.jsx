@@ -11,8 +11,11 @@ const CustomTooltip = ({ active, payload }) => {
 			</div>
 		);
 	}
-
 	return null;
+};
+
+const customDay = (day) =>{
+	return Number(day.slice(8));
 };
 
 export default function Activity({data}) {
@@ -22,9 +25,7 @@ export default function Activity({data}) {
 			width={750} 
 			height={250} 
 			barSize={3} 
-			barGap="8"
-			barCategoryGap="20%" 
-			margin={{ top: 0, right: 30, left: 35, bottom: 5 }}
+			barGap={8}
 			data={data}
 		>
 			<text
@@ -35,25 +36,26 @@ export default function Activity({data}) {
 				dominantBaseline="central"
 			>
 				<tspan fontSize="18px" fontWeight="500">
-                            Activité quotidienne
+          Activité quotidienne
 				</tspan>
 			</text>
-			<CartesianGrid strokeDasharray="3" vertical={false} />
+			<CartesianGrid strokeDasharray="2 2" vertical={false} />
 			<XAxis 
-				dataKey="day[9]" 
+				dataKey="day" 
 				//type='number'
 				fontSize={14}
 				tickMargin={15}
 				tickLine={false}
-				padding={{ right: -40, left: -34 }}
-				minTickGap={30}
+				padding={{ right: -45, left: -38 }}
+				tickFormatter={customDay}
 
 			/>
 			<YAxis
-				orientation="right" 
+				orientation="right"
+				dataKey='calories' 
 				axisLine={false} 
 				tickLine={false}
-				padding={{ left: 40 }}
+				padding={{ right: 40 }}
 			/>
 			<Tooltip  content={<CustomTooltip />} wrapperStyle={{ outline: 'none' }}/>
 			<Legend 

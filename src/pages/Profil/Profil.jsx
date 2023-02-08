@@ -20,17 +20,12 @@ export default function Profil() {
 	const userSession = Connection(`${properties.api.baseUrl}/${id}/average-sessions`);
 	const userPerformance = Connection(`${properties.api.baseUrl}/${id}/performance`);
 
-	
+	console.log(data.data);	
 
-	console.log(data.data);
-	
-
-	if (user.error) return <div> oups il y a un probléme !!</div>;
+	if (error) return <div> oups il y a un probléme !!</div>;
 	if (userActivity.error) return <div> oups il y a un probléme !!</div>;
 	if (userSession.error) return <div> oups il y a un probléme !!</div>;
 	if (userPerformance.error) return <div> oups il y a un probléme !!</div>;
-
-
   
 	return (
 		<main>
@@ -52,61 +47,32 @@ export default function Profil() {
 									):(
 										<Activity data={userActivity.data.data.sessions} />
 									)}
-									
-									
-									
-									
-
 								</div>
+
 								<div className="mini-charts">
+
 									<div className="sessions">
-										<Session  userId={id} error={error} isLoading ={isLoading} />
-										
-										{/*	<LineChart
-											width={500}
-											height={300}
-											data={userSession.data.data.sessions}
-											margin={{
-												top: 5,
-												right: 30,
-												left: 20,
-												bottom: 5,
-											}}
-										>
-											<CartesianGrid strokeDasharray="3 3" />
-											<XAxis dataKey="day" />
-											<YAxis />
-											<Tooltip />
-											<Legend verticalAlign="top" />
-											<Line type="monotone" dataKey="sessionLength" stroke="#8884d8" activeDot={{ r: 8 }} />
-												
-										</LineChart>*/}
-										
-
+										{userSession.isLoading ?(
+											<div> Télechargement </div>
+										):(
+											<Session  data = {userSession.data.data.sessions} />
+										)}										
 									</div>
+
 									<div className="performance">
-										<Performances  userId={id} error={error} isLoading ={isLoading} />
-										{/*<RadarChart cx="50%" cy="50%" outerRadius="80%" data={userPerformance.data.data}>
-											<PolarGrid />
-											<PolarAngleAxis dataKey="kind" />
-											<PolarRadiusAxis />
-											<Radar name="Mike" dataKey="value" stroke="#8884d8" fill="#8884d8" fillOpacity={0.6} />
-									</RadarChart>*/}
-
+										{userPerformance.isLoading ?(
+											<div> Télechargement </div>
+										):(
+											<Performances  data={userPerformance.data.data.data} />
+										)}
 									</div>
-									<div className="score">
-										<Score userId={id} />
 
-										{/*<RadialBarChart cx="50%" cy="50%" innerRadius="10%" outerRadius="80%" barSize={10} data={data.data}>
-											<RadialBar
-												minAngle={15}
-												label={{ position: "insideStart", fill: "#000" }}
-												background
-												clockWise
-												dataKey="todayScore"
-											/>
-											<Legend iconSize={10} layout="vertical" verticalAlign="middle"  />
-								</RadialBarChart>*/}
+									<div className="score">
+										{user.isLoading ?(
+											<div> Télechargement </div>
+										):(
+											<Score  data = {[{ Score: data.data.score || data.data.todayScore }]} />
+										)}
 									</div>
 								</div>
 							</div>
