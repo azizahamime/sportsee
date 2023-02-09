@@ -28,7 +28,7 @@ export default function Score({data}) {
 				style={{ backgroundColor: '#FBFBFB', borderRadius: '5px' }}
 				innerRadius="70%"
 				outerRadius="90%"
-				barSize={10}
+				barSize={15}
 				data={data}
 				startAngle={90}
 				endAngle={450}

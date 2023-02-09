@@ -5,9 +5,9 @@ const CustomTooltip = ({ active, payload }) => {
 	//console.log(payload);
 	if (active) {
 		return (
-			<div className="customTooltipSession">
-				<p className="tooltipDataSession">{`${payload[0].value} `}min</p>
-			</div>
+			
+			<p className="customTooltipSession">{`${payload[0].value}`}min</p>
+			
 		);
 	}
 	return null;
@@ -21,7 +21,7 @@ const CustomCursor = ({ points }) => {
 			opacity={0.2}
 			x={points[1].x}
 			width={1000}
-			height={300 }
+			height={700 }
 		/>
 	);
 };
@@ -56,7 +56,7 @@ export default function Sessions({data}) {
 				width={250}
 				height={100}
 				data={data}
-				style={{ backgroundColor: '#FF0000', borderWidth: '5' }}
+				style={{ backgroundColor: '#FF0000', borderWidth: '10' }}
 				margin={{
 					right: 5,
 					left: 5,
@@ -81,14 +81,13 @@ export default function Sessions({data}) {
 					cursor={<CustomCursor />}
 					wrapperStyle={{
 						background: '#FFFFFF',
-						textAlign: 'center',
 						color: '#000000',
-						width: '55px',
+						width: '40px',
 						height: '25px',
 						outline: 'none',
 						marginTop: '15',
 						fontSize :'14',
-						
+						fontWeight: '500'	
 					}}
 				/>
 				<Line 
@@ -96,8 +95,7 @@ export default function Sessions({data}) {
 					dataKey="sessionLength" 
 					stroke="#FFF" 
 					dot = {false}
-					
-					activeDot={{ r: 8, strokeWidth: 2 }} 
+					activeDot={{ r:6, strokeWidth:2 }} 
 				/>
 			</LineChart>
 		</Fragment>
