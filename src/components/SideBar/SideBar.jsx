@@ -4,6 +4,11 @@ import natation from '../../assets/natation.svg';
 import syclisme from '../../assets/syclisme.svg';
 import poids from '../../assets/poids.svg';
 
+/**
+ * Vertical navigation component aside
+ *
+ * @returns {JSX.Element} The vertical navigation component aside
+ */
 export default function SideBar() {
 	return (
 		<aside>

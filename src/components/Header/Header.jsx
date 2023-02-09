@@ -2,6 +2,12 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import logo from '../../assets/logo.svg';
 
+/**
+ * Horizontal navigation component
+ *
+ * @returns {JSX.Element} The horizontal navigation component
+ */
+
 export default function Header() {
 	return (
 		<header>

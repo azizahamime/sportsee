@@ -8,9 +8,12 @@ import {
 	ResponsiveContainer
 } from 'recharts';
 
-
+/**
+ * [Score is a function that returns a radial bar chart, polar angle axis, radial bar, and texts]
+ * @param {Array} userMain  array of object contains the score's value .
+ * @returns {JSX.Element} A radial bar chart
+ */
 export default function Score({data}) {
-	console.log(data[0]);
 	const RenderLegend = () => (
 		<div className="score-container">
 			<span className="score">{data[0].Score * 100}%</span>
@@ -18,10 +21,8 @@ export default function Score({data}) {
 			<p className="description"> objectif</p>
 		</div>
 	);
-	
 	return (
-		<ResponsiveContainer width="100%" height="100%">
-			
+		<ResponsiveContainer width="100%" height="100%">	
 			<RadialBarChart
 				cx="50%"
 				cy="50%"

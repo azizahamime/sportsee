@@ -2,6 +2,14 @@ import React from 'react';
 import { BarChart, CartesianGrid, XAxis, YAxis, Tooltip,Legend, Bar } from 'recharts';
 
 
+/**
+ * [CustomTooltip is a function that returns a red frame with the data contained in it]
+ * @param {Object} props containing active and payload
+ * @param {boolean} active indicates whether the tooltip should be displayed or not
+ * @param {array} payload an array of data objects containing the values to be displayed in the tooltip
+ * @returns {JSX}} A custom tooltip
+ */
+
 const CustomTooltip = ({ active, payload }) => {
 	if (active && payload && payload.length) {
 		return (
@@ -14,12 +22,23 @@ const CustomTooltip = ({ active, payload }) => {
 	return null;
 };
 
+/**
+ * [customDay is a function that returns the last two characters of the day string as a number]
+ * @param {string} day - a string representing a day
+ * @returns {number} the last two characters of the day string as a number
+ */
 const customDay = (day) =>{
 	return Number(day.slice(8));
 };
 
+
+/**
+ * @component Activity bar chart component.
+ * @param {array} data - An array of objects representing the data for the chart. Each object has properties for day, kilogram, and calories.
+ * @returns {JSX.Element} A bar chart displaying the daily user's weight and calories.
+ *
+ */
 export default function Activity({data}) {
-	console.log(data);
 	return(
 		<BarChart 
 			width={750} 
@@ -80,8 +99,5 @@ export default function Activity({data}) {
 				radius={[3,3,0,0]} 
 			/>
 		</BarChart>				
-	);
-
-	
-	
+	);	
 }

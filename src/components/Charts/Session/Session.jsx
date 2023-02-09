@@ -1,6 +1,15 @@
 import React, { Fragment } from 'react';
 import {LineChart, XAxis, YAxis, Tooltip, Line, Rectangle, CartesianGrid } from 'recharts';
 
+
+
+/**
+ * [CustomTooltip is a function that returns a red frame with the data contained in it]
+ * @param {Object} props containing active and payload
+ * @param {boolean} active indicates whether the tooltip should be displayed or not
+ * @param {array} payload an array of data objects containing the values to be displayed in the tooltip
+ * @returns {JSX}} A custom tooltip
+ */
 const CustomTooltip = ({ active, payload }) => {
 	//console.log(payload);
 	if (active) {
@@ -13,8 +22,9 @@ const CustomTooltip = ({ active, payload }) => {
 	return null;
 };
 
+
 const CustomCursor = ({ points }) => {
-	console.log(points[1].x );
+	console.log(points);
 	return (
 		<Rectangle
 			fill="#000000"
@@ -25,6 +35,12 @@ const CustomCursor = ({ points }) => {
 		/>
 	);
 };
+
+/**
+ * [daySemaine is a function which generates the days of the week]
+ * @param {number} day - A number representing the day of the week (1 for Monday, 2 for Tuesday, etc.)
+ * @returns {string} A string representation of the day of the week (L for Monday, M for Tuesday, etc.)
+ */
 
 function daySemaine(day) {
 	switch (day) {
@@ -48,6 +64,11 @@ function daySemaine(day) {
 	}
 }
 
+/**
+ * @function Sessions
+ * @param {Object} data - An object containing user session data
+ * @returns {{JSX.Element}} A line chart displaying user session data
+ */
 export default function Sessions({data}) {
 	return(
 		<Fragment>

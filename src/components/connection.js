@@ -2,6 +2,12 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 
 const urlUsers = 'http://localhost:3001/user/12';
+/**
+ * @component Connection get datas.
+ * @param {String} url - get the url of the user and activities
+ * @returns {Object} 
+ *
+ */
 
 export default function Connection(url = urlUsers) {
 	const [data, setData] = useState({});
