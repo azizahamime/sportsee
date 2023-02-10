@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: pages/Profil/Profil.jsx</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: pages/Profil/Profil.jsx</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import React, { Fragment } from 'react';
+import {  useParams } from 'react-router-dom';
+import Connection from '../../components/connection';
+import properties from '../../properties';
+import calories from '../../assets/calories-icon.svg';
+import proteines from '../../assets/protein-icon.svg';
+import carbs from '../../assets/carbs-icon.svg';
+import fat from '../../assets/fat-icon.svg';
+import Activity from '../../components/Charts/Activity/Activity';
+import Session from '../../components/Charts/Session/Session';
+import Performances from '../../components/Charts/Performances/performances';
+import Score from '../../components/Charts/Score/Score';
+
+/**
+ * @component Profil Elements to display on the Profil page.
+ * @returns {JSX.Element} Profil page's containt
+ *
+ */
+
+
+export default function Profil() {
+	const { id } = useParams();
+	const { data, error, isLoading} = Connection(`${properties.api.baseUrl}/${id}`);
+	const user = Connection(`${properties.api.baseUrl}/${id}`);
+	const userActivity = Connection(`${properties.api.baseUrl}/${id}/activity`);
+	const userSession = Connection(`${properties.api.baseUrl}/${id}/average-sessions`);
+	const userPerformance = Connection(`${properties.api.baseUrl}/${id}/performance`);
+
+	if (error) return &lt;div> oups il y a un probléme !!&lt;/div>;
+	if (userActivity.error) return &lt;div> oups il y a un probléme !!&lt;/div>;
+	if (userSession.error) return &lt;div> oups il y a un probléme !!&lt;/div>;
+	if (userPerformance.error) return &lt;div> oups il y a un probléme !!&lt;/div>;
+  
+	return (
+		&lt;main>
+			&lt;div className="container">
+				{isLoading ?(
+					&lt;div> Téléchargement&lt;/div>
+				):(
+					&lt;Fragment>
+						&lt;div className="profil-header">
+							&lt;h1> Bonjour &lt;span className="name">{user.data.data.userInfos.firstName}&lt;/span>&lt;/h1>
+							&lt;p> Félicitation ! Vous avez explosé vos objectifs hier 👏 &lt;/p>
+						&lt;/div>
+						&lt;div className="profile-body">
+							
+							&lt;div className="charts">
+								&lt;div className="activity">
+									{userActivity.isLoading ?(
+										&lt;div> Télechargement &lt;/div>
+									):(
+										&lt;Activity data={userActivity.data.data.sessions} />
+									)}
+								&lt;/div>
+
+								&lt;div className="mini-charts">
+
+									&lt;div className="sessions">
+										{userSession.isLoading ?(
+											&lt;div> Télechargement &lt;/div>
+										):(
+											&lt;Session  data = {userSession.data.data.sessions} />
+										)}										
+									&lt;/div>
+
+									&lt;div className="performance">
+										{userPerformance.isLoading ?(
+											&lt;div> Télechargement &lt;/div>
+										):(
+											&lt;Performances  data={userPerformance.data.data.data} />
+										)}
+									&lt;/div>
+
+									&lt;div className="score">
+										{user.isLoading ?(
+											&lt;div> Télechargement &lt;/div>
+										):(
+											&lt;Score  data = {[{ Score: data.data.score || data.data.todayScore }]} />
+										)}
+									&lt;/div>
+								&lt;/div>
+							&lt;/div>
+							&lt;div className="nutrition">
+								&lt;div className="calories">
+									&lt;img src={calories} alt="calories" />
+									&lt;div>
+										&lt;p className="amount">{data.data.keyData.calorieCount}&lt;/p>
+										&lt;p className="name">Clories&lt;/p>
+									&lt;/div>
+								&lt;/div>
+								&lt;div className="proteines">
+									&lt;img src={proteines} alt="proteines" />
+									&lt;div>
+										&lt;p className="amount">{data.data.keyData.proteinCount}&lt;/p>
+										&lt;p className="name">Proteines&lt;/p>
+									&lt;/div>
+								&lt;/div>
+								&lt;div className="glucides">
+									&lt;img src={carbs} alt="glucides" />
+									&lt;div>
+										&lt;p className="amount">{data.data.keyData.carbohydrateCount}&lt;/p>
+										&lt;p className="name">Glucides&lt;/p>
+									&lt;/div>
+								&lt;/div>
+								&lt;div className="lipides">
+									&lt;img src={fat} alt="lipides" />
+									&lt;div>
+										&lt;p className="amount">{data.data.keyData.lipidCount}&lt;/p>
+										&lt;p className="name">Lipides&lt;/p>
+									&lt;/div>
+								&lt;/div>
+							&lt;/div>						
+						&lt;/div>
+					&lt;/Fragment>
+				)}
+
+			&lt;/div>
+		&lt;/main>
+	);
+}</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-data.html">data</a></li></ul><h3>Global</h3><ul><li><a href="global.html#CustomTooltip">CustomTooltip</a></li><li><a href="global.html#Sessions">Sessions</a></li><li><a href="global.html#customDay">customDay</a></li><li><a href="global.html#daySemaine">daySemaine</a></li><li><a href="global.html#perFormence">perFormence</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.0</a> on Fri Feb 10 2023 07:33:54 GMT+0100 (heure normale d’Europe centrale)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
