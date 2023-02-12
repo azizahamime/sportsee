@@ -75,7 +75,7 @@ export default function Profil() {
 										{user.isLoading ?(
 											<div> Télechargement </div>
 										):(
-											<Score  data = {[{ Score: data.data.score || data.data.todayScore }]} />
+											<Score  data = {[{score:user.data.data.score || user.data.data.todayScore}]} />
 										)}
 									</div>
 								</div>

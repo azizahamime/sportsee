@@ -16,7 +16,7 @@ import {
 export default function Score({data}) {
 	const RenderLegend = () => (
 		<div className="score-container">
-			<span className="score">{data[0].Score * 100}%</span>
+			<span className="score">{data[0].score * 100}%</span>
 			<p className="description">de votre </p>
 			<p className="description"> objectif</p>
 		</div>
@@ -27,8 +27,7 @@ export default function Score({data}) {
 				cx="50%"
 				cy="50%"
 				style={{ backgroundColor: '#FBFBFB', borderRadius: '5px' }}
-				innerRadius="70%"
-				outerRadius="90%"
+				innerRadius="90%"
 				barSize={15}
 				data={data}
 				startAngle={90}
@@ -45,13 +44,14 @@ export default function Score({data}) {
           Score
 					</tspan>
 				</text>
-				<circle cx="50%" cy="50%" fill="#fff" r="85"></circle>
+				<circle cx="50%" cy="50%" fill="#fff" r="80"></circle>
 				<PolarAngleAxis type="number" domain={[0, 1]} tick={false} />
 				<RadialBar
 					minAngle={15}
 					dataKey="score"
 					fill="red"
 					cornerRadius={20}
+					clockWise
 				/>
 				<Legend
 					width={120}

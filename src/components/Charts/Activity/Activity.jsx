@@ -13,7 +13,18 @@ import { BarChart, CartesianGrid, XAxis, YAxis, Tooltip,Legend, Bar } from 'rech
 const CustomTooltip = ({ active, payload }) => {
 	if (active && payload && payload.length) {
 		return (
-			<div className="tooltip">
+			<div className="tooltip"
+				style={{
+					backgroundColor: '#E60000',
+					color: '#FFFFFF',
+					fontSize: '7px',
+					fontWeight: '500',
+					textAlign: 'center',
+					lineHeight: '24px',
+					fontStyle: 'normal',
+					width: '39px',
+					height: '63px'
+				}}>
 				<p className="weight tooltip_item">{`${payload[0].value}`}kg</p>
 				<p className="calories tooltip_item">{`${payload[1].value}`}kcal</p>
 			</div>
@@ -40,6 +51,7 @@ const customDay = (day) =>{
  */
 export default function Activity({data}) {
 	return(
+		
 		<BarChart 
 			width={750} 
 			height={250} 
@@ -83,6 +95,7 @@ export default function Activity({data}) {
 				iconType="circle"
 				iconSize={9}
 				height={80}
+				//wrapperStyle={{width:'100%'}}
 			/>
 			<Bar 
 				dataKey="kilogram" 
@@ -97,6 +110,7 @@ export default function Activity({data}) {
 				fill="#E60000" 
 				barSize={7} 
 				radius={[3,3,0,0]} 
+				
 			/>
 		</BarChart>				
 	);	

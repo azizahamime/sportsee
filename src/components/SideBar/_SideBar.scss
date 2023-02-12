@@ -1,10 +1,10 @@
 aside {
-  position: absolute;
-  top: 91px;
+  position: fixed;
+
   bottom: 0;
   left: 0;
   box-sizing: border-box;
-  width: 117px;
+  width: 105px;
   height: 100%;
   padding: 80px 0;
   background-color: black;
@@ -12,11 +12,12 @@ aside {
   .nav-footer {
     display: flex;
     flex-direction: column;
+    padding: 70px 0;
 
     img {
-      margin: 0 auto 20px;
-      width: 64px;
-      height: 64px;
+      margin: 0 auto 10px;
+      width: 54px;
+      height: 54px;
       background-color: #fff;
       padding: 10px;
       border-radius: 6px;
@@ -24,7 +25,7 @@ aside {
   }
   p {
     position: absolute;
-    bottom: calc(45px + 59px);
+    bottom: 70px;
     left: -14px;
     white-space: nowrap;
     font-weight: 500;

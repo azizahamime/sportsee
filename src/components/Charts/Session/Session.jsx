@@ -15,7 +15,15 @@ const CustomTooltip = ({ active, payload }) => {
 	if (active) {
 		return (
 			
-			<p className="customTooltipSession">{`${payload[0].value}`}min</p>
+			<p className="customTooltipSession" 
+				style={{
+					background: '#FFFFFF',
+					color: '#000000',
+					fontSize :'12',
+					fontWeight: '500'
+
+				}}
+			>{`${payload[0].value}`} min</p>
 			
 		);
 	}
@@ -24,7 +32,6 @@ const CustomTooltip = ({ active, payload }) => {
 
 
 const CustomCursor = ({ points }) => {
-	console.log(points);
 	return (
 		<Rectangle
 			fill="#000000"
@@ -102,24 +109,20 @@ export default function Sessions({data}) {
 					content={<CustomTooltip />} 
 					cursor={<CustomCursor />}
 					wrapperStyle={{
-						background: '#FFFFFF',
-						color: '#000000',
-						width: '40px',
-						height: '25px',
 						outline: 'none',
-						marginTop: '15',
-						fontSize :'14',
-						fontWeight: '500'	
 					}}
+					
 				/>
 				<Line 
 					type="natural" 
 					dataKey="sessionLength" 
 					stroke="#FFF" 
 					dot = {false}
-					activeDot={{ r:6, strokeWidth:2 }} 
+					activeDot={{ r:6 }} 
+					strokeWidth={2}
+					
 					wrapperStyle={{
-						height: '80%',
+						background: 'linear-gradient(180deg, #FFFFFF 0%, rgba(255, 255, 255, 0.106534) 100%)',
 					}}
 					
 				/>
