@@ -7,6 +7,7 @@ import {
 	Legend,
 	ResponsiveContainer
 } from 'recharts';
+import PropTypes from 'prop-types';
 
 /**
  * [Score is a function that returns a radial bar chart, polar angle axis, radial bar, and texts]
@@ -65,3 +66,8 @@ export default function Score({data}) {
 		</ResponsiveContainer>
 	);
 }
+
+Score.propTypes = {
+	data: PropTypes.arrayOf(PropTypes.object).isRequired,
+	score: PropTypes.number,
+};

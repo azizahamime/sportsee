@@ -7,6 +7,8 @@ import {
 	PolarRadiusAxis	
 } from 'recharts';
 
+import PropTypes from 'prop-types';
+
 /**
  * [perFormence is a function that returns a string based on a number]
  * @param {number} kind
@@ -61,3 +63,7 @@ export default function Performances({data}){
 		</RadarChart>
 	);
 }
+
+Performances.propTypes = {
+	data: PropTypes.arrayOf(PropTypes.object).isRequired,
+};

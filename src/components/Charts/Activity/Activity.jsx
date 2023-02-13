@@ -1,5 +1,7 @@
 import React from 'react';
 import { BarChart, CartesianGrid, XAxis, YAxis, Tooltip,Legend, Bar } from 'recharts';
+import PropTypes from 'prop-types';
+
 
 
 /**
@@ -31,6 +33,11 @@ const CustomTooltip = ({ active, payload }) => {
 		);
 	}
 	return null;
+};
+
+CustomTooltip.propTypes = {
+	active: PropTypes.bool,
+	payload: PropTypes.array,
 };
 
 /**
@@ -110,8 +117,12 @@ export default function Activity({data}) {
 				fill="#E60000" 
 				barSize={7} 
 				radius={[3,3,0,0]} 
-				
 			/>
-		</BarChart>				
+		</BarChart>		
+	
+				
 	);	
 }
+Activity.propTypes = {
+	data: PropTypes.arrayOf(PropTypes.object).isRequired,
+};

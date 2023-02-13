@@ -1,5 +1,6 @@
 import React, { Fragment } from 'react';
 import {LineChart, XAxis, YAxis, Tooltip, Line, Rectangle, CartesianGrid } from 'recharts';
+import PropTypes from 'prop-types';
 
 
 
@@ -30,8 +31,14 @@ const CustomTooltip = ({ active, payload }) => {
 	return null;
 };
 
+CustomTooltip.propTypes = {
+	active: PropTypes.bool,
+	payload: PropTypes.array,
+};
+
 
 const CustomCursor = ({ points }) => {
+	console.log(points);
 	return (
 		<Rectangle
 			fill="#000000"
@@ -43,6 +50,10 @@ const CustomCursor = ({ points }) => {
 		/>
 	);
 };
+CustomCursor.propTypes = {
+	points: PropTypes.array,
+};
+
 
 /**
  * [daySemaine is a function which generates the days of the week]
@@ -131,3 +142,6 @@ export default function Sessions({data}) {
 		
 	);	
 }
+Sessions.propTypes = {
+	data: PropTypes.arrayOf(PropTypes.object).isRequired,
+};
