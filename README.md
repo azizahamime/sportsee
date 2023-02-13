@@ -63,11 +63,13 @@ you can see it at directory "/docs" ,open the file "index.html" to see the full 
 
 ## Scripts
 
-### :one: `npm start` :command will allow you to run the application on http://localhost:8081
+☑️ `npm start` :command will allow you to run the application on http://localhost:8081
 
-    The Web App calls the api on port 3000 (http://localhost:3000). Ensure the api is running by following this link: [run backend api](https://github.com/OpenClassrooms-Student-Center/P9-front-end-dashboard#22-launching-the-project).
+The Web App calls the api on port 3000 (http://localhost:3000). Ensure the api is running by following this link: [run backend api](https://github.com/OpenClassrooms-Student-Center/P9-front-end-dashboard#22-launching-the-project).
 
-###:two: 'npm run mirage' : command will allow you to run the application on: http://localhost:8082/ and the web app calls the mocked api, we can change datas on "src/Data.js" to see the difference. 
+☑️`npm run mirage` : command will allow you to run the application on: http://localhost:8082/ 
+
+The web app calls the mocked api, we can change datas on "src/Data.js" to see the difference. 
 
 ## Test
 Once app is launched go to "profile" to see dashboards.
