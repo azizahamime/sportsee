@@ -1,5 +1,5 @@
 import React from 'react';
-import { BarChart, CartesianGrid, XAxis, YAxis, Tooltip,Legend, Bar } from 'recharts';
+import { BarChart, CartesianGrid, XAxis, YAxis, Tooltip,Legend, Bar, ResponsiveContainer } from 'recharts';
 import PropTypes from 'prop-types';
 
 
@@ -48,7 +48,31 @@ CustomTooltip.propTypes = {
 const customDay = (day) =>{
 	return Number(day.slice(8));
 };
+/**
+ * [RenderLegend is a function that returns the legende
+ * @param {array} payload an array of data objects
+ * @returns {jsx} the legende content
+ */
 
+const RenderLegend = ({ payload }) => (
+	<div className="activity-legend-container">
+		<span className="activity-title">Activité quotidienne</span>
+		<span className="flex-1"></span>
+		{payload.map((entry, index) => (
+			<div className="activity-legend" key={`activity-legend-${index}`}>
+				<div
+					className="legend-circle"
+					style={{ backgroundColor: entry.color }}
+				></div>
+				<span className="activity-legend-title">{entry.value}</span>
+			</div>
+		))}
+	</div>
+);
+
+RenderLegend.propTypes = {
+	payload: PropTypes.array,
+};
 
 /**
  * @component Activity bar chart component.
@@ -58,69 +82,76 @@ const customDay = (day) =>{
  */
 export default function Activity({data}) {
 	return(
-		
-		<BarChart 
-			width={750} 
-			height={250} 
-			barSize={3} 
-			barGap={8}
-			data={data}
-		>
-			<text
-				x={100}
-				y={14}
-				fill="black"
-				textAnchor="middle"
-				dominantBaseline="central"
+		<ResponsiveContainer className="activity" width="100%" height="100%">
+			<BarChart 
+				title='Activité quotidienne'
+				width={500} 
+				height={300} 
+				barSize={7} 
+				barGap={8}
+				data={data}
+				margin={{
+					top: 5,
+					right: 30,
+					left: 20,
+					bottom: 5,
+				}}
 			>
-				<tspan fontSize="18px" fontWeight="500">
+				{/*<text
+					x={100}
+					y={5}
+					fill="black"
+					textAnchor="middle"
+					dominantBaseline="central"
+			>
+					<tspan fontSize="18px" fontWeight="500">
           Activité quotidienne
-				</tspan>
-			</text>
-			<CartesianGrid strokeDasharray="2 2" vertical={false} />
-			<XAxis 
-				dataKey="day" 
-				//type='number'
-				fontSize={14}
-				tickMargin={15}
-				tickLine={false}
-				padding={{ right: -45, left: -38 }}
-				tickFormatter={customDay}
+					</tspan>
+				</text>*/}
+				<CartesianGrid strokeDasharray="2 2" vertical={false} />
+				<XAxis 
+					dataKey="day" 
+					//type='number'
+					fontSize={14}
+					tickMargin={15}
+					tickLine={false}
+					//padding={{ right: -45, left: -38 }}
+					tickFormatter={customDay}
 
-			/>
-			<YAxis
-				orientation="right"
-				dataKey='calories' 
-				axisLine={false} 
-				tickLine={false}
-				padding={{ right: 40 }}
-			/>
-			<Tooltip  content={<CustomTooltip />} wrapperStyle={{ outline: 'none' }}/>
-			<Legend 
-				verticalAlign="top"
-				align="right"
-				iconType="circle"
-				iconSize={9}
-				height={80}
-				//wrapperStyle={{width:'100%'}}
-			/>
-			<Bar 
-				dataKey="kilogram" 
-				name="Poids (kg) " 
-				fill="#282D30"
-				barSize={7} 
-				radius={[3,3,0,0]} 
-			/>
-			<Bar 
-				dataKey="calories" 
-				name="Calories brûlées (kCal)" 
-				fill="#E60000" 
-				barSize={7} 
-				radius={[3,3,0,0]} 
-			/>
-		</BarChart>		
-	
-				
+				/>
+				<YAxis
+					orientation="right"
+					dataKey='calories' 
+					axisLine={false} 
+					tickLine={false}
+					padding={{ right: 40 }}
+				/>
+				<Tooltip  content={<CustomTooltip />} wrapperStyle={{ outline: 'none' }}/>
+				<Legend 
+					verticalAlign="top"
+					align="right"
+					iconType="circle"
+					iconSize={9}
+					height={80}
+					wrapperStyle={{width:'100%'}}
+					content ={RenderLegend}
+				/>
+				<Bar 
+					dataKey="kilogram" 
+					name="Poids (kg) " 
+					fill="#282D30"
+					barSize={7} 
+					radius={[3,3,0,0]} 
+				/>
+				<Bar 
+					dataKey="calories" 
+					name="Calories brûlées (kCal)" 
+					fill="#E60000" 
+					barSize={7} 
+					radius={[3,3,0,0]} 
+				/>
+			</BarChart>		
+		</ResponsiveContainer>		
 	);	
 }
 Activity.propTypes = {

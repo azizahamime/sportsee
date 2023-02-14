@@ -45,7 +45,7 @@ const CustomCursor = ({ points }) => {
 			opacity={0.2}
 			x={points[1].x}
 			width={1000}
-			height={700 }
+			height={200 }
 
 		/>
 	);
@@ -112,7 +112,6 @@ export default function Sessions({data}) {
 					style={{ transform: 'scale(0.9)', transformOrigin: 'bottom' }} 
 					tick={{ fill: '#FFFFFF', fontWeight: 500, fontSize: 12 }}
 					tickMargin={10}
-					interval="preserveStartEnd"
                 
 				/>
 				<YAxis tickLine={false} hide domain={['dataMin - 5', 'dataMax + 5']}/>
