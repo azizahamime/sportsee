@@ -1,17 +1,10 @@
-/*.recharts-legend-item-text {
-  font-weight: 500;
-  font-size: 14px;
-  line-height: 24px;
-  color: #74798c !important;
-  padding: 0 10px;
-  opacity: 0.5;
-}*/
-.activity {
+.activity-chart {
   .recharts-wrapper {
     .recharts-legend-wrapper {
       .activity-legend-container {
         display: flex;
         align-items: center;
+        justify-content: space-between;
 
         span {
           font-style: normal;
@@ -19,28 +12,26 @@
           font-size: 15px;
           line-height: 24px;
         }
-
-        .activity-legend {
+        .legend {
           display: flex;
-          align-items: center;
+          .activity-legend {
+            display: flex;
+            align-items: center;
 
-          .legend-circle {
-            border-radius: 50%;
-            width: 8px;
-            height: 8px;
-            margin-right: 10px;
-            margin-left: 20px;
+            .legend-circle {
+              border-radius: 50%;
+              width: 8px;
+              height: 8px;
+              margin-right: 10px;
+              margin-left: 20px;
+            }
+
+            span {
+              font-size: 14px;
+              color: rgba(116, 121, 140, 1);
+              margin-right: 20px;
+            }
           }
-
-          span {
-            font-size: 14px;
-            color: rgba(116, 121, 140, 1);
-            margin-right: 20px;
-          }
-        }
-
-        .flex-1 {
-          flex: 1;
         }
       }
     }

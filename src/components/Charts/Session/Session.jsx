@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React  from 'react';
 import {LineChart, XAxis, YAxis, Tooltip, Line, Rectangle, CartesianGrid } from 'recharts';
 import PropTypes from 'prop-types';
 
@@ -44,8 +44,9 @@ const CustomCursor = ({ points }) => {
 			fill="#000000"
 			opacity={0.2}
 			x={points[1].x}
+			y={-100}
 			width={1000}
-			height={200 }
+			height={1000 }
 
 		/>
 	);
@@ -90,55 +91,70 @@ function daySemaine(day) {
  */
 export default function Sessions({data}) {
 	return(
-		<Fragment>
-			<p className='lineChartTitle'> Durée moyenne des sessions</p>
-			<LineChart
-				width={250}
-				height={100}
-				data={data}
-				style={{ backgroundColor: '#FF0000', borderWidth: '10' }}
-				margin={{
-					right: 5,
-					left: 5,
-				}}
-			>
-				<CartesianGrid vertical={false} horizontal={false} />
-				<XAxis 
-					dataKey="day" 
-					tickLine={false} 
-					axisLine={false}
-					tickFormatter={daySemaine}    
-					fillOpacity={0.6  }
-					style={{ transform: 'scale(0.9)', transformOrigin: 'bottom' }} 
-					tick={{ fill: '#FFFFFF', fontWeight: 500, fontSize: 12 }}
-					tickMargin={10}
-                
-				/>
-				<YAxis tickLine={false} hide domain={['dataMin - 5', 'dataMax + 5']}/>
-				<Tooltip 
-					content={<CustomTooltip />} 
-					cursor={<CustomCursor />}
-					wrapperStyle={{
-						outline: 'none',
-					}}
-					
-				/>
-				<Line 
-					type="natural" 
-					dataKey="sessionLength" 
-					stroke="#FFF" 
-					dot = {false}
-					activeDot={{ r:6 }} 
-					strokeWidth={2}
-					
-					wrapperStyle={{
-						background: 'linear-gradient(180deg, #FFFFFF 0%, rgba(255, 255, 255, 0.106534) 100%)',
-					}}
-					
-				/>
-			</LineChart>
-		</Fragment>
 		
+		<LineChart
+			width={500}
+			height={300}
+			data={data}
+			style={{  borderWidth: '10' }}
+			
+			margin={{
+				top: 5,
+				right: 30,
+				left: 20,
+				bottom: 5,
+			}}
+		>
+			<text
+				x={40}
+				y={20}
+				fill="#fff"
+				//textAnchor="middle"
+				//dominantBaseline="center"
+				className='lineChartTitle'
+			>
+				
+        Durée moyenne des sessions
+				
+			</text>
+			
+			<CartesianGrid vertical={false} horizontal={false} />
+			<XAxis 
+				dataKey="day" 
+				type='number'
+				domain={[1, 7]}
+				tickCount="7"
+
+				tickLine={false} 
+				axisLine={false}
+				tickFormatter={daySemaine}    
+				fillOpacity={0.6  }
+				//style={{ transform: 'scale(0.9)', transformOrigin: 'bottom' }} 
+				tick={{ fill: '#FFFFFF', fontWeight: 500, fontSize: 12,margin:20 , }}
+				tickMargin={20}
+                
+			/>
+			<YAxis tickLine={false} hide domain={['dataMin - 5', 'dataMax + 5']}/>
+			<Tooltip 
+				content={<CustomTooltip />} 
+				cursor={<CustomCursor />}
+				wrapperStyle={{
+					outline: 'none',
+				}}
+					
+			/>
+			<Line 
+				type="natural" 
+				dataKey="sessionLength" 
+				stroke="#FFF" 
+				dot = {false}
+				activeDot={{ r:6 }} 
+				strokeWidth={2}
+				margin ={{bottom: 20}}
+					
+					
+			/>
+		</LineChart>
 	);	
 }
 Sessions.propTypes = {

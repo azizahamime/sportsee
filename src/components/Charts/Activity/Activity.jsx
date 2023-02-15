@@ -58,15 +58,18 @@ const RenderLegend = ({ payload }) => (
 	<div className="activity-legend-container">
 		<span className="activity-title">Activité quotidienne</span>
 		<span className="flex-1"></span>
-		{payload.map((entry, index) => (
-			<div className="activity-legend" key={`activity-legend-${index}`}>
-				<div
-					className="legend-circle"
-					style={{ backgroundColor: entry.color }}
-				></div>
-				<span className="activity-legend-title">{entry.value}</span>
-			</div>
-		))}
+		<div className='legend' >
+			{payload.map((entry, index) => (
+				<div className="activity-legend" key={`activity-legend-${index}`}>
+					<div
+						className="legend-circle"
+						style={{ backgroundColor: entry.color }}
+					></div>
+					<span className="activity-legend-title">{entry.value}</span>
+				</div>
+			))}
+		</div>
+		
 	</div>
 );
 
@@ -82,7 +85,7 @@ RenderLegend.propTypes = {
  */
 export default function Activity({data}) {
 	return(
-		<ResponsiveContainer className="activity" width="100%" height="100%">
+		<ResponsiveContainer className="activity-chart" width="100%" height="100%">
 			<BarChart 
 				title='Activité quotidienne'
 				width={500} 
@@ -92,22 +95,10 @@ export default function Activity({data}) {
 				data={data}
 				margin={{
 					top: 5,
-					right: 30,
 					left: 20,
 					bottom: 5,
 				}}
-			>
-				{/*<text
-					x={100}
-					y={5}
-					fill="black"
-					textAnchor="middle"
-					dominantBaseline="central"
-			>
-					<tspan fontSize="18px" fontWeight="500">
-          Activité quotidienne
-					</tspan>
-				</text>*/}
+			>				
 				<CartesianGrid strokeDasharray="2 2" vertical={false} />
 				<XAxis 
 					dataKey="day" 
