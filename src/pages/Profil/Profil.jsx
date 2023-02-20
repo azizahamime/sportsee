@@ -25,11 +25,11 @@ export default function Profil() {
 	const userActivity = Connection(`${properties.api.baseUrl}/${id}/activity`);
 	const userSession = Connection(`${properties.api.baseUrl}/${id}/average-sessions`);
 	const userPerformance = Connection(`${properties.api.baseUrl}/${id}/performance`);
+	console.log(data);
 
-	if (!(Object.prototype.hasOwnProperty.call(user.data, 'data'))&& !error){ return <div className='error-div'> l&apos;utilisateur n&apos;existe pas</div>;} 
-	error && <div> <p>{error}  </p>  </div> ;
-	
-	if (error) return <div className='error-div'> {error.message}!</div>;
+	if (!(Object.prototype.hasOwnProperty.call(data, 'data')) && (error.message ==='Request failed with status code 404')){ return <div className='error-div'> l&apos;utilisateur n&apos;existe pas</div>;} 	
+	if(error.message ==='Network Error') return <div className='error-div'> Connectez vous!</div>;
+	if(error) return <div className='error-div'> {error.message}</div>;
 	if (userActivity.error) return <div className='error-div'> oups il y a un probléme !!</div>;
 	if (userSession.error) return <div className='error-div'> oups il y a un probléme !!</div>;
 	if (userPerformance.error) return <div className='error-div'> oups il y a un probléme !!</div>;
