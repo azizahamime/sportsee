@@ -26,14 +26,18 @@ export default function Profil() {
 	const userSession = Connection(`${properties.api.baseUrl}/${id}/average-sessions`);
 	const userPerformance = Connection(`${properties.api.baseUrl}/${id}/performance`);
 
-	if (error) return <div> oups il y a un probléme !!</div>;
-	if (userActivity.error) return <div> oups il y a un probléme !!</div>;
-	if (userSession.error) return <div> oups il y a un probléme !!</div>;
-	if (userPerformance.error) return <div> oups il y a un probléme !!</div>;
+	if (!(Object.prototype.hasOwnProperty.call(user.data, 'data'))&& !error){ return <div className='error-div'> l&apos;utilisateur n&apos;existe pas</div>;} 
+	error && <div> <p>{error}  </p>  </div> ;
+	
+	if (error) return <div className='error-div'> {error.message}!</div>;
+	if (userActivity.error) return <div className='error-div'> oups il y a un probléme !!</div>;
+	if (userSession.error) return <div className='error-div'> oups il y a un probléme !!</div>;
+	if (userPerformance.error) return <div className='error-div'> oups il y a un probléme !!</div>;
   
 	return (
 		<main>
 			<div className="container">
+				
 				{isLoading ?(
 					<div> Téléchargement</div>
 				):(

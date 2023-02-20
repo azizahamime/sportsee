@@ -111,11 +111,25 @@ export default function Activity({data}) {
 
 				/>
 				<YAxis
-					orientation="right"
-					dataKey='calories' 
-					axisLine={false} 
+					hide={true}
+					yAxisId="left"
+					orientation="left"
+					axisLine={false}
 					tickLine={false}
-					padding={{ right: 40 }}
+					tick={{ fill: 'rgba(155, 158, 172, 1)', fontSize: '14px' }}
+					tickMargin={10}
+					tickCount={3}
+				/>
+				<YAxis
+					yAxisId="right"
+					orientation="right"
+					axisLine={false}
+					tickLine={false}
+					tick={{ fill: 'rgba(155, 158, 172, 1)', fontSize: '14px' }}
+					tickMargin={10}
+					tickCount={4}
+					type="number"
+				
 				/>
 				<Tooltip  content={<CustomTooltip />} wrapperStyle={{ outline: 'none' }}/>
 				<Legend 
@@ -128,6 +142,7 @@ export default function Activity({data}) {
 					content ={RenderLegend}
 				/>
 				<Bar 
+					yAxisId="right"
 					dataKey="kilogram" 
 					name="Poids (kg) " 
 					fill="#282D30"
@@ -135,6 +150,7 @@ export default function Activity({data}) {
 					radius={[3,3,0,0]} 
 				/>
 				<Bar 
+					yAxisId="left"
 					dataKey="calories" 
 					name="Calories brûlées (kCal)" 
 					fill="#E60000" 
