@@ -20,16 +20,16 @@ import Score from '../../components/Charts/Score/Score';
 
 export default function Profil() {
 	const { id } = useParams();
-	const { data, error, isLoading} = Connection(`${properties.api.baseUrl}/${id}`);
+	//const { data, error, isLoading} = Connection(`${properties.api.baseUrl}/${id}`);
 	const user = Connection(`${properties.api.baseUrl}/${id}`);
 	const userActivity = Connection(`${properties.api.baseUrl}/${id}/activity`);
 	const userSession = Connection(`${properties.api.baseUrl}/${id}/average-sessions`);
 	const userPerformance = Connection(`${properties.api.baseUrl}/${id}/performance`);
-	console.log(data);
+	console.log(user.data);
 
-	if (!(Object.prototype.hasOwnProperty.call(data, 'data')) || (error.message ==='Request failed with status code 404')){ return <div className='error-div'> l&apos;utilisateur n&apos;existe pas</div>;} 	
-	if(error.message ==='Network Error') return <div className='error-div'> Connectez vous!</div>;
-	if(error) return <div className='error-div'> {error.message}</div>;
+	if (!(Object.prototype.hasOwnProperty.call(user.data, 'data')) || (user.error.message ==='Request failed with status code 404')){ return <div className='error-div'> l&apos;utilisateur n&apos;existe pas</div>;} 	
+	if(user.error.message ==='Network Error') return <div className='error-div'> Connectez vous!</div>;
+	if(user.error) return <div className='error-div'> {user.error.message}</div>;
 	if (userActivity.error) return <div className='error-div'> oups il y a un probléme !!</div>;
 	if (userSession.error) return <div className='error-div'> oups il y a un probléme !!</div>;
 	if (userPerformance.error) return <div className='error-div'> oups il y a un probléme !!</div>;
@@ -38,7 +38,7 @@ export default function Profil() {
 		<main>
 			<div className="container">
 				
-				{isLoading ?(
+				{user.isLoading ?(
 					<div> Téléchargement</div>
 				):(
 					<Fragment>
@@ -88,28 +88,28 @@ export default function Profil() {
 								<div className="calories">
 									<img src={calories} alt="calories" />
 									<div>
-										<p className="amount">{data.data.keyData.calorieCount}</p>
+										<p className="amount">{user.data.data.keyData.calorieCount}</p>
 										<p className="name">Clories</p>
 									</div>
 								</div>
 								<div className="proteines">
 									<img src={proteines} alt="proteines" />
 									<div>
-										<p className="amount">{data.data.keyData.proteinCount}</p>
+										<p className="amount">{user.data.data.keyData.proteinCount}</p>
 										<p className="name">Proteines</p>
 									</div>
 								</div>
 								<div className="glucides">
 									<img src={carbs} alt="glucides" />
 									<div>
-										<p className="amount">{data.data.keyData.carbohydrateCount}</p>
+										<p className="amount">{user.data.data.keyData.carbohydrateCount}</p>
 										<p className="name">Glucides</p>
 									</div>
 								</div>
 								<div className="lipides">
 									<img src={fat} alt="lipides" />
 									<div>
-										<p className="amount">{data.data.keyData.lipidCount}</p>
+										<p className="amount">{user.data.data.keyData.lipidCount}</p>
 										<p className="name">Lipides</p>
 									</div>
 								</div>
