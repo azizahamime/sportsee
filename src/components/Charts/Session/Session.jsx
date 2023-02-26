@@ -12,7 +12,6 @@ import PropTypes from 'prop-types';
  * @returns {JSX}} A custom tooltip
  */
 const CustomTooltip = ({ active, payload }) => {
-	//console.log(payload);
 	if (active) {
 		return (
 			
@@ -38,7 +37,6 @@ CustomTooltip.propTypes = {
 
 
 const CustomCursor = ({ points }) => {
-	console.log(points);
 	return (
 		<Rectangle
 			fill="#000000"
